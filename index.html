@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aniket Kumar — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C1220;
+    --panel:#121B2E;
+    --panel-2:#0F1728;
+    --text:#E8EAF1;
+    --muted:#8791AC;
+    --muted-dim:#5C6584;
+    --amber:#FFB454;
+    --amber-dim:#8A6636;
+    --teal:#5FE0C8;
+    --line:#243050;
+    --radius:3px;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    line-height:1.65;
+  }
+  a{color:inherit;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  .shell{max-width:880px; margin:0 auto; padding:0 32px;}
+
+  /* ── header (compact, not a hero) ─────────────── */
+  header.top{
+    border-bottom:1px solid var(--line);
+    padding:44px 0 32px;
+  }
+  header.top .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+  header.top h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(28px,4vw,36px);
+    letter-spacing:-0.01em;
+  }
+  header.top h1 span{color:var(--amber);}
+  header.top .role{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-top:8px;
+  }
+  header.top .contact{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:5px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+  header.top .contact a{text-decoration:none;}
+  header.top .contact a:hover{color:var(--amber);}
+  @media (max-width:600px){
+    header.top .contact{align-items:flex-start;}
+  }
+
+  section{padding:52px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin-bottom:14px;
+  }
+  h2.title{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:24px;
+    margin-bottom:22px;
+  }
+
+  /* ── about ─────────────────────────────────── */
+  .about p{font-size:15.5px; color:var(--text); max-width:640px; margin-bottom:14px;}
+  .about p.dim{color:var(--muted);}
+
+  /* ── skills (detailed) ────────────────────────── */
+  .skill-block{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:16px;
+    background:var(--panel-2);
+  }
+  .skill-block .head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:10px;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .skill-block .cat{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:16px;
+    color:var(--text);
+  }
+  .skill-block .level{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--teal);
+  }
+  .skill-block .note{color:var(--muted); font-size:13.5px; margin-bottom:14px; max-width:600px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:5px 11px;
+    background:var(--panel);
+  }
+
+  .soft-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:14px;
+    margin-top:6px;
+  }
+  @media (max-width:560px){ .soft-grid{grid-template-columns:1fr;} }
+  .soft-item{
+    border-left:2px solid var(--amber-dim);
+    padding:4px 0 4px 14px;
+    font-size:13.5px;
+    color:var(--muted);
+  }
+  .soft-item b{color:var(--text); font-weight:500; display:block; font-size:14px; margin-bottom:2px;}
+
+  /* ── experience (projects as entries) ─────────── */
+  .exp-item{
+    padding:22px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+  }
+  .exp-item:first-child{border-top:none; padding-top:0;}
+  @media (max-width:600px){ .exp-item{grid-template-columns:1fr; gap:8px;} }
+  .exp-meta{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted-dim);}
+  .exp-meta .date{display:block; margin-top:6px; color:var(--muted);}
+  .exp-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:17px; margin-bottom:8px;}
+  .exp-desc li{list-style:none; margin-bottom:5px; padding-left:14px; position:relative; color:var(--muted); font-size:14px;}
+  .exp-desc li::before{content:'▸'; position:absolute; left:0; color:var(--teal); font-size:10px; top:3px;}
+  .exp-stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;}
+  .stack-tag{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:10.5px;
+    color:var(--amber);
+    border:1px solid var(--amber-dim);
+    border-radius:var(--radius);
+    padding:3px 8px;
+  }
+
+  /* ── credentials ───────────────────────────────*/
+  .cred-grid{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
+  @media (max-width:640px){ .cred-grid{grid-template-columns:1fr;} }
+  .cred-block h3{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--teal); margin-bottom:14px;
+  }
+  .cred-item{margin-bottom:14px;}
+  .cred-item .h{font-weight:500; color:var(--text); font-size:14px;}
+  .cred-item .sub{color:var(--muted); font-size:12.5px; margin-top:2px;}
+  .cred-item .when{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--amber-dim); margin-top:3px;}
+  ul.plain{list-style:none;}
+  ul.plain li{color:var(--muted); font-size:13px; margin-bottom:9px; padding-left:14px; position:relative;}
+  ul.plain li::before{content:'—'; position:absolute; left:0; color:var(--amber-dim);}
+  ul.plain li b{color:var(--text); font-weight:500;}
+
+  footer{padding:40px 0 56px; text-align:center;}
+  footer .fine{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted-dim);}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <header class="top">
+    <div class="row">
+      <div>
+        <h1>Aniket <span>Kumar</span></h1>
+        <div class="role">Software Developer · CSE Student</div>
+      </div>
+      <div class="contact">
+        <a href="mailto:aniketsingh2ara@gmail.com">aniketsingh2ara@gmail.com</a>
+        <a href="https://github.com/CaptainCoder01" target="_blank" rel="noopener">github.com/CaptainCoder01</a>
+        <a href="https://www.linkedin.com/in/aniket-singh-83599b339" target="_blank" rel="noopener">linkedin.com/in/aniket-singh-83599b339</a>
+        <a href="https://leetcode.com/u/coderGeneral" target="_blank" rel="noopener">leetcode.com/u/coderGeneral</a>
+        <span>+91 87895 45766</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT (short) -->
+  <section id="about">
+    <div class="eyebrow mono">About</div>
+    <div class="about">
+      <p>First-year B.Tech CSE student at Lovely Professional University (CGPA 9.09), working across web development, embedded systems, and backend fundamentals. I build small, complete things — and I'm currently deepening my skills in C++, web development, and systems programming.</p>
+    </div>
+  </section>
+
+  <!-- SKILLS (detailed) -->
+  <section id="skills">
+    <div class="eyebrow mono">Technical Skills</div>
+    <h2 class="title">What I work with</h2>
+
+    <div class="skill-block">
+      <div class="head">
+        <span class="cat">Languages</span>
+        <span class="level">Core</span>
+      </div>
+      <div class="note">Primary languages for coursework, problem-solving, and systems/embedded work.</div>
+      <div class="chip-row">
+        <span class="chip">Python</span><span class="chip">C</span><span class="chip">C++</span><span class="chip">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="head">
+        <span class="cat">Web Development</span>
+        <span class="level">Applied</span>
+      </div>
+      <div class="note">Built and shipped a portfolio site and contributed a UI feature to an open-source project, framework-free.</div>
+      <div class="chip-row">
+        <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript (DOM)</span><span class="chip">GitHub Pages</span>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="head">
+        <span class="cat">Databases &amp; Backend Fundamentals</span>
+        <span class="level">Learning</span>
+      </div>
+      <div class="note">Currently deepening REST APIs, data structures &amp; algorithms, and query fundamentals.</div>
+      <div class="chip-row">
+        <span class="chip">PostgreSQL</span><span class="chip">REST APIs</span><span class="chip">Data Structures &amp; Algorithms</span>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="head">
+        <span class="cat">Embedded Systems &amp; Hardware</span>
+        <span class="level">Applied</span>
+      </div>
+      <div class="note">Hands-on circuit design and embedded programming — uncommon exposure for a first-year CS student.</div>
+      <div class="chip-row">
+        <span class="chip">Arduino</span><span class="chip">Embedded C</span><span class="chip">Circuit Design</span><span class="chip">Sensor Integration</span>
+      </div>
+    </div>
+
+    <div class="skill-block">
+      <div class="head">
+        <span class="cat">Tools &amp; Workflow</span>
+        <span class="level">Core</span>
+      </div>
+      <div class="note">Daily tools for version control, development, and collaboration.</div>
+      <div class="chip-row">
+        <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Open Source Workflows</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFT SKILLS -->
+  <section id="soft-skills">
+    <div class="eyebrow mono">Soft Skills</div>
+    <h2 class="title">How I work</h2>
+    <div class="soft-grid">
+      <div class="soft-item"><b>Leadership</b>Led a 4-person team from design through delivery on the Arduino rover project.</div>
+      <div class="soft-item"><b>Low level understanding</b>Comfortable working close to the metal — from embedded C to how the web platform actually behaves.</div>
+      <div class="soft-item"><b>Organised manner</b>Plans and structures work methodically, from project scope to daily task tracking.</div>
+      <div class="soft-item"><b>Attention to detail</b>Focus on clean, working end-to-end delivery over half-finished scope.</div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE (projects) -->
+  <section id="experience">
+    <div class="eyebrow mono">Experience</div>
+    <h2 class="title">Project work</h2>
+
+    <div class="exp-item">
+      <div class="exp-meta">GitHub<span class="date">Oct 2025</span></div>
+      <div>
+        <div class="exp-name">Personal CV Website</div>
+        <ul class="exp-desc">
+          <li>Designed and built a personal portfolio website from scratch to showcase projects and skills.</li>
+          <li>Focused on clean layout, responsive design, and smooth UX — applying core web fundamentals without frameworks.</li>
+          <li>Fully self-designed and deployed end-to-end, from concept to live site.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span><span class="stack-tag">GitHub Pages</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">Embedded Systems<span class="date">Oct – Dec 2025</span></div>
+      <div>
+        <div class="exp-name">Arduino Smart Land Rover</div>
+        <ul class="exp-desc">
+          <li>Engineered an Arduino-integrated autonomous land rover capable of remote control and sensor-driven navigation.</li>
+          <li>Handled circuit design, embedded C programming, and hardware-software integration.</li>
+          <li>Led a team of 4 to successfully design, build, and deliver the project.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-tag">Arduino</span><span class="stack-tag">C</span><span class="stack-tag">Embedded Systems</span><span class="stack-tag">Circuit Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">GitHub · Open Source<span class="date">Aug 2025</span></div>
+      <div>
+        <div class="exp-name">Theme Toggle Effect</div>
+        <ul class="exp-desc">
+          <li>Contributed a JavaScript and CSS-based light/dark theme toggle feature to an open-source GitHub project.</li>
+          <li>Implemented smooth theme-switching logic and persisted user preference across sessions.</li>
+        </ul>
+        <div class="exp-stack">
+          <span class="stack-tag">JavaScript</span><span class="stack-tag">CSS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="eyebrow mono">Credentials</div>
+    <h2 class="title">Education &amp; record</h2>
+    <div class="cred-grid">
+      <div class="cred-block">
+        <h3 class="mono">Education</h3>
+        <div class="cred-item">
+          <div class="h">Lovely Professional University</div>
+          <div class="sub">B.Tech — Computer Science &amp; Engineering · CGPA 9.09</div>
+          <div class="when mono">Phagwara, Punjab · Aug 2025 – Expected Jul 2029</div>
+        </div>
+        <div class="cred-item">
+          <div class="h">S.N. Memorial International School</div>
+          <div class="sub">Higher Secondary Education · 75.2%</div>
+          <div class="when mono">Arrah, Bihar · Apr 2022 – Mar 2024</div>
+        </div>
+        <div class="cred-item">
+          <div class="h">Gyan Jyoti Awasiya Vidyalaya</div>
+          <div class="sub">Secondary Education · 88.2%</div>
+          <div class="when mono">Bampali, Arrah, Bihar · Apr 2021 – Mar 2022</div>
+        </div>
+      </div>
+
+      <div class="cred-block">
+        <h3 class="mono">Certificates</h3>
+        <ul class="plain">
+          <li><b>Python</b> — Lovely Professional University · Dec 2025</li>
+          <li><b>C</b> — Lovely Professional University · Jun 2026</li>
+          <li><b>Digital Leadership</b> — Certification · Oct 2025</li>
+          <li><b>Python</b> — Certification · Apr 2026</li>
+        </ul>
+        <h3 class="mono" style="margin-top:22px;">Achievements</h3>
+        <ul class="plain">
+          <li>Achieved the <b>LeetCode 100 Days Badge</b> for consistent daily problem solving.</li>
+          <li>Made an open-source contribution on GitHub during first year.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fine">© 2026 Aniket Kumar · aniketsingh2ara@gmail.com · +91 87895 45766</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
