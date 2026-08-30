@@ -1,7 +1,7 @@
 ## Hi there 👋
 
 <!--
-**CaptainCoder01/CaptainCoder01** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+**CaptainCoder01/CaptainCoder01**.
 
 - 🌱 I’m currently learning Data structures and Algorithms and git/github.
 - 👯 I’m looking to collaborate on an AI project.
